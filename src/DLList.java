@@ -1,8 +1,8 @@
-public class SLList {
-    private SLNode head;
+public class DLList {
+    private DLNode head;
     private int size;
 
-    public SLList() {
+    public DLList() {
         head = null;
         size = 0;
     }
@@ -13,7 +13,7 @@ public class SLList {
             return;
         }
 
-        SLNode newNode = new SLNode(s);
+        DLNode newNode = new DLNode(s);
 
         //there is not a head node
         if (head == null) {
@@ -21,12 +21,13 @@ public class SLList {
         } else {
             //there is a head node
             //go to the last node
-            SLNode node = head;
+            DLNode node = head;
             while (node.getNext() != null) {
                 node = node.getNext();
             }
             //append new node to the end of the list
             node.setNext(newNode);
+            newNode.setPrevious(node);
         }
 
         size++;
@@ -39,32 +40,44 @@ public class SLList {
         }
 
         int index = 0;
-        SLNode previousNode = null;
-        SLNode currentNode = head;
-        //remove the start of the list
-        if (pos == 0) {
-            SLNode removedNode = head;
+        DLNode previousNode = null;
+        DLNode currentNode = head;
+        DLNode nextNode = null;
+        if (currentNode != null) {
+            nextNode = currentNode.getNext();
+        }
+        //remove the only element of the list
+        if (pos == 0 && nextNode == null) {
+            head = null;
+        } else if (pos == 0) {
+            //remove the start of the list if it has multiple elements
+            DLNode removedNode = head;
             head = head.getNext();
+            head.setPrevious(null);
             removedNode.setNext(null);
         } else {
             //remove an element not at the start of the list
             //go to node at removing index
             while (index < pos) {
                 previousNode = currentNode;
-                currentNode = currentNode.getNext();
+                currentNode = nextNode;
+                nextNode = currentNode.getNext();
                 index++;
             }
             //remove node
-            previousNode.setNext(currentNode.getNext());
+            previousNode.setNext(nextNode);
+            currentNode.setPrevious(null);
             currentNode.setNext(null);
+            nextNode.setPrevious(previousNode);
         }
 
         size--;
     }
 
+    @Override
     public String toString() {
         StringBuilder contents = new StringBuilder();
-        SLNode node = head;
+        DLNode node = head;
         while (node != null) {
             contents.append(node + "\n");
             node = node.getNext();

@@ -8,4 +8,9 @@ public class Song {
         this.artist = artist;
         this.length = length;
     }
+
+    @Override
+    public String toString() {
+        return "\"" + title + "\" by " + artist + ": " + length + " min.";
+    }
 }
