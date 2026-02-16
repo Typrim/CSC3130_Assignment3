@@ -1,5 +1,5 @@
-public class SLList {
-    private SLNode head;
+public class SLList<T> {
+    private SLNode<T> head;
     private int size;
 
     public SLList() {
@@ -7,13 +7,13 @@ public class SLList {
         size = 0;
     }
 
-    public void addy(Song s) {
+    public void addy(T t) {
         //no song passed
-        if (s == null) {
+        if (t == null) {
             return;
         }
 
-        SLNode newNode = new SLNode(s);
+        SLNode<T> newNode = new SLNode<>(t);
 
         //there is not a head node
         if (head == null) {
@@ -21,7 +21,7 @@ public class SLList {
         } else {
             //there is a head node
             //go to the last node
-            SLNode node = head;
+            SLNode<T> node = head;
             while (node.getNext() != null) {
                 node = node.getNext();
             }
@@ -39,11 +39,11 @@ public class SLList {
         }
 
         int index = 0;
-        SLNode previousNode = null;
-        SLNode currentNode = head;
+        SLNode<T> previousNode = null;
+        SLNode<T> currentNode = head;
         //remove the start of the list
         if (pos == 0) {
-            SLNode removedNode = head;
+            SLNode<T> removedNode = head;
             head = head.getNext();
             removedNode.setNext(null);
         } else {
@@ -64,7 +64,7 @@ public class SLList {
 
     public String toString() {
         StringBuilder contents = new StringBuilder();
-        SLNode node = head;
+        SLNode<T> node = head;
         while (node != null) {
             contents.append(node + "\n");
             node = node.getNext();

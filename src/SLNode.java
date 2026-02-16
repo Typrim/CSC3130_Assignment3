@@ -1,22 +1,22 @@
-public class SLNode {
-    private Song song;
-    private SLNode next;
+public class SLNode<T> {
+    private T t;
+    private SLNode<T> next;
 
-    public SLNode(Song song) {
-        this.song = song;
+    public SLNode(T t) {
+        this.t = t;
         next = null;
     }
 
-    public SLNode getNext() {
+    public SLNode<T> getNext() {
         return next;
     }
 
-    public void setNext(SLNode next) {
+    public void setNext(SLNode<T> next) {
         this.next = next;
     }
 
     @Override
     public String toString() {
-        return song.toString();
+        return t.toString();
     }
 }

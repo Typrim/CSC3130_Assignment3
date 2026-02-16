@@ -1,32 +1,32 @@
-public class DLNode {
-    private Song song;
-    private DLNode previous;
-    private DLNode next;
+public class DLNode<T> {
+    private T t;
+    private DLNode<T> previous;
+    private DLNode<T> next;
 
-    public DLNode(Song song) {
-        this.song = song;
+    public DLNode(T t) {
+        this.t = t;
         previous = null;
         next = null;
     }
 
-    public DLNode getPrevious() {
+    public DLNode<T> getPrevious() {
         return previous;
     }
 
-    public void setPrevious(DLNode previous) {
+    public void setPrevious(DLNode<T> previous) {
         this.previous = previous;
     }
 
-    public DLNode getNext() {
+    public DLNode<T> getNext() {
         return next;
     }
 
-    public void setNext(DLNode next) {
+    public void setNext(DLNode<T> next) {
         this.next = next;
     }
 
     @Override
     public String toString() {
-        return song.toString();
+        return t.toString();
     }
 }

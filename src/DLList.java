@@ -1,5 +1,5 @@
-public class DLList {
-    private DLNode head;
+public class DLList<T> {
+    private DLNode<T> head;
     private int size;
 
     public DLList() {
@@ -7,13 +7,13 @@ public class DLList {
         size = 0;
     }
 
-    public void addy(Song s) {
+    public void addy(T t) {
         //no song passed
-        if (s == null) {
+        if (t == null) {
             return;
         }
 
-        DLNode newNode = new DLNode(s);
+        DLNode<T> newNode = new DLNode<>(t);
 
         //there is not a head node
         if (head == null) {
@@ -21,7 +21,7 @@ public class DLList {
         } else {
             //there is a head node
             //go to the last node
-            DLNode node = head;
+            DLNode<T> node = head;
             while (node.getNext() != null) {
                 node = node.getNext();
             }
@@ -40,9 +40,9 @@ public class DLList {
         }
 
         int index = 0;
-        DLNode previousNode = null;
-        DLNode currentNode = head;
-        DLNode nextNode = null;
+        DLNode<T> previousNode = null;
+        DLNode<T> currentNode = head;
+        DLNode<T> nextNode = null;
         if (currentNode != null) {
             nextNode = currentNode.getNext();
         }
@@ -51,7 +51,7 @@ public class DLList {
             head = null;
         } else if (pos == 0) {
             //remove the start of the list if it has multiple elements
-            DLNode removedNode = head;
+            DLNode<T> removedNode = head;
             head = head.getNext();
             head.setPrevious(null);
             removedNode.setNext(null);
@@ -77,7 +77,7 @@ public class DLList {
     @Override
     public String toString() {
         StringBuilder contents = new StringBuilder();
-        DLNode node = head;
+        DLNode<T> node = head;
         while (node != null) {
             contents.append(node + "\n");
             node = node.getNext();

@@ -1,6 +1,6 @@
-public class AList {
+public class AList<T> {
     //array to store elements
-    Song[] array;
+    T[] array;
     //maximum size of the array
     int maxSize;
     //number of elements in the list
@@ -9,14 +9,14 @@ public class AList {
     public AList() {
         maxSize = 0;
         size = 0;
-        array = new Song[maxSize];
+        array = (T[]) new Object[maxSize];
     }
 
-    public void addy(Song p) {
+    public void addy(T p) {
         //if the array is full
         if (size >= maxSize) {
             //move elements to a larger array
-            Song[] newArray = new Song[++maxSize];
+            T[] newArray = (T[]) new Object[++maxSize];
             for (int index = 0; index < size; index++) {
                 newArray[index] = array[index];
             }
